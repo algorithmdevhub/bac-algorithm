@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oscar Engine App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+       
+        <header class="top-header hide-reset" id="app-header">
+            <div class="left-placeholder"></div>
+            <h1>Oscar Engine</h1>
+            <button class="reset-btn" id="btn-reset">Reset</button>
+        </header>
+
+ <div id="screen-home" class="screen-view active">
+ <main class="main-content">
+    
+    <section class="card-panel welcome-widget">
+        <h2 id="welcome-header">Welcome Back, Player</h2>
+        <p>Your Oscar Engine session is ready. Monitor your performance below.</p>
+    </section>
+
+    <section class="card-panel stats-grid">
+        <div class="stat-item">
+            <div class="stat-icon">💰</div> <label>BANKROLL</label>
+            <span id="home-bankroll" class="value">0</span>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon">📈</div> <label>PROFIT</label>
+            <span id="home-profit" class="value">$0</span>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon">🎯</div> <label>WAGERED</label>
+            <span id="home-wagered" class="value">0</span>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon">🏆</div> <label>WIN RATE</label>
+            <span id="home-winrate" class="value">0%</span>
+        </div>
+    </section>
+
+        <section class="menu-grid">
+            <button class="menu-btn"><div class="icon">📖</div><span>HOW TO USE</span></button>
+            <button class="menu-btn"><div class="icon">🎓</div><span>OSCARS GRIND</span></button>
+            <button class="menu-btn"><div class="icon">💚</div><span>SUPPORT</span></button>
+            <button class="menu-btn"><div class="icon">💬</div><span>MESSAGE US</span></button>
+            <button class="menu-btn"><div class="icon">♘</div><span>STRATEGY</span></button>
+            <button class="menu-btn"><div class="icon">❓</div><span>FAQS</span></button>
+        </section>
+
+        <section class="card-panel disclaimer-box">
+            <div class="icon">⚠️</div>
+            <div>
+                <h3>DISCLAIMER</h3>
+                <p>Oscar Engine is a simulation tool for entertainment and educational purposes only. It does not guarantee any profit. Use at your own risk.</p>
+            </div>
+        </section>
+    </main>
+</div>
+
+        <div id="screen-games" class="screen-view">
+            <main class="main-content">
+                
+                <section class="card-panel setup-widget custom-config-grid">
+                    <div class="grid-row item-unit">
+                        <label>Unit</label>
+                        <span id="display-unit" class="live-value">0</span>
+                    </div>
+                    <div class="grid-row item-bank">
+                        <label>Bankroll</label>
+                        <span id="display-bankroll" class="live-value">0</span>
+                    </div>
+                    <div class="grid-row item-profit">
+                        <label>Profit</label>
+                        <div id="val-profit" class="live-value profit">0</div>
+                    </div>
+                   
+                    <div class="grid-row item-bets">
+                        <label>Bets</label>
+                        <div id="val-bets" class="live-value">0</div>
+                    </div>
+                    <div class="grid-row item-wins">
+                        <label>Wins</label>
+                        <div id="val-wins" class="live-value">0</div>
+                    </div>
+                    <div class="grid-row item-losses">
+                        <label>Losses</label>
+                        <div id="val-losses" class="live-value">0</div>
+                    </div>
+                </section>
+
+                <section class="card-panel stats-widget toggle-grid">
+                    <div class="toggle-row">
+                        <span>High Peak</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-hp">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span>High Current</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-hc">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span>Low Peak</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-lp">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span>Low Current</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-lc">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="card-panel actions-widget">
+    <div class="history-centered-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0;">Hand History</h2>
+            <button id="btn-reset-history" class="reset-btn">Reset History</button>
+        </div>
+        
+        <div class="controls-row">
+            <div class="mini-btn-group inline-row">
+                <button class="btn-square b-btn" data-side="B">B</button>
+                <button class="btn-square p-btn" data-side="P">P</button>
+            </div>
+            <div class="bet-placeholder-box-inline">
+                Next Bet: <span id="nb-side" class="side-highlight">No Bet</span> <span id="nb-amount"></span>
+            </div>
+        </div>
+    </div>
+
+                    <div class="history-layout vertical-stack">
+                        <div class="bead-road-container">
+                            <div class="bead-road" id="bead-road-display"></div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+
+<div id="screen-profile" class="screen-view">
+    <main class="main-content">
+        <section class="card-panel profile-card">
+            <h2 class="card-title">User Settings</h2>
+            <div class="profile-grid">
+                <div><label>First Name</label><input type="text" id="prof-name" placeholder="Name"></div>
+                <div>
+                    <label>Currency</label>
+                    <select id="prof-currency" class="no-arrow">
+                        <option value="USD">$ USD</option>
+                        <option value="EUR">€ EUR</option>
+                        <option value="GBP">£ GBP</option>
+                        <option value="PHP">₱ PHP</option>
+                        <option value="JPY">¥ JPY</option>
+                        <option value="KRW">₩ KRW</option>
+                        <option value="CNY">¥ CNY</option>
+                        <option value="INR">₹ INR</option>
+                        <option value="AUD">$ AUD</option>
+                        <option value="CAD">$ CAD</option>
+                    </select>
+                </div>
+                <div><label>Default Unit</label><input type="number" id="prof-unit" placeholder="10"></div>
+                <div><label>Default Bankroll</label><input type="number" id="prof-bankroll" placeholder="1000"></div>
+            </div>
+            <button id="btn-save-profile" class="reset-btn" style="width:100%; margin-top:20px;">Save Settings</button>
+        </section>
+
+<section class="card-panel profile-card">
+    <div class="stats-header-row">
+        <h2 class="card-title">Lifetime Statistics</h2>
+        <button id="btn-reset-lifetime" class="reset-btn">Reset</button>
+    </div>
+
+    <div class="stats-center-grid">
+        <div class="stat-item">
+            <label>Total Profit</label>
+            <div id="life-profit" class="stat-value">£0</div>
+        </div>
+        <div class="stat-item">
+            <label>Total Wagered</label>
+            <div id="life-wagered" class="stat-value">£0</div>
+        </div>
+    </div>
+</section>
+    </main>
+</div>
+
+<nav class="bottom-nav">
+    <button class="nav-tab active" data-tab="home"> 
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </button>
+    <button class="nav-tab" data-tab="games"> 
+        <span class="nav-icon">🎴</span>
+        <span>Games</span>
+    </button>
+    <button class="nav-tab" data-tab="profile">
+        <span class="nav-icon">👤</span>
+        <span>Profile</span>
+    </button>
+</nav>
+
+    <div id="info-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 id="modal-title">Title</h2>
+        <div id="modal-body" class="modal-body"></div>
+        <button id="close-modal" class="reset-btn">Close</button>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

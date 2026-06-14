@@ -1,0 +1,776 @@
+/* ===== THEME DESIGN ENVIRONMENT VARIABLES & GLOBAL RESET ===== */
+:root {
+    --bg-gradient-outer: radial-gradient(circle at top, #3d2d25, #1a1a1a); /* Lighter brown/grey */
+    --bg-gradient-app: linear-gradient(145deg, #2b221d, #1a1a1a); /* Lighter app background */
+    --inner-bg: #1e1e1e; /* Lighter container background */
+    
+    --text-main: #f5f5f5;
+    --text-muted: #aaa;
+    --text-gold: #d4af37;
+    --text-bright-gold: #ffd700;
+    
+    /* Casino Match Branding Colors */
+    --color-b: #ff3b30; /* Banker Red */
+    --color-p: #2979ff; /* Player Blue */
+    --accent-green: #3aa76d;
+    --border-gold-alpha: rgba(255, 215, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: var(--bg-gradient-outer);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ===== MONITOR APP CONTAINER WINDOW (SMARTPHONE FRAME) ===== */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    height: 100vh;
+    background: var(--bg-gradient-app);
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+        0 0 20px rgba(212, 175, 55, 0.2),
+        inset 0 0 10px rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+/* ===== FIXED HEADER OVERVIEW LAYOUT ===== */
+.top-header.hide-reset #btn-reset {
+    display: none;
+}
+
+.top-header {
+    height: 60px;
+    background: linear-gradient(145deg, #2c1c14, #120e0c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border-gold-alpha);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.top-header .left-placeholder {
+    width: 50px;
+}
+
+.top-header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: var(--text-gold);
+}
+
+#btn-reset {
+    position: absolute;
+    right: 20px;
+}
+
+.reset-btn {
+    background: none;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--text-muted);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.reset-btn:hover {
+    border-color: var(--color-b);
+    color: var(--color-b);
+    box-shadow: 0 0 10px rgba(255, 59, 48, 0.4);
+}
+
+/* ===== DYNAMIC FLEX SCROLL CONTENT WINDOW SYSTEM ===== */
+.screen-view {
+    display: none;
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+}
+
+.screen-view.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 30px;
+    scrollbar-width: none;
+}
+
+.main-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== SHARED STRUCTURAL CARD PANELS ===== */
+.card-panel {
+    background: #252525; /* Slightly lighter than the background to maintain visibility */
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: scaleInView 0.5s ease forwards;
+}
+
+@keyframes scaleInView {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-panel:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+        0 6px 14px rgba(0,0,0,0.5),
+        0 0 10px rgba(212,175,55,0.2);
+}
+
+.setup-widget {
+    background: linear-gradient(180deg, #1a242b 0%, #0d0e10 100%);
+    border: 1px solid #4a6475;
+}
+
+.stats-widget {
+    background: linear-gradient(180deg, #241b2d 0%, #0d0e10 100%);
+    border: 1px solid #8e754a;
+}
+
+.actions-widget {
+    background: linear-gradient(180deg, #152219 0%, #0d0e10 100%);
+    border: 1px solid #3d6b4e;
+}
+
+/* ===== SYSTEM CONFIG PARAMETERS GRID ===== */
+/* Updated Grid for consistent alignment */
+.custom-config-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 perfectly equal columns */
+    gap: 8px;
+    width: 100%; /* Ensures it fills the container width */
+}
+
+/* Ensure individual items fill the grid cell and align content */
+.grid-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 50px;
+    background: var(--inner-bg);
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Optional: Make labels look cleaner */
+.grid-row label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.custom-config-grid .grid-row input,
+.custom-config-grid .live-value {
+    text-align: center;
+    width: 100%;
+}
+
+.grid-row label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.grid-row input {
+    width: 65px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-bright-gold);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.live-value {
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+    color: var(--text-bright-gold);
+}
+.live-value.profit { color: var(--accent-green); }
+
+/* ===== SWITCH RULES TOGGLE MODULES ===== */
+.toggle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+.toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--inner-bg);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-row span {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0; width: 0; height: 0;
+}
+
+.slider {
+    position: absolute; cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #374151;
+    transition: .3s; border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute; content: "";
+    height: 14px; width: 14px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .3s; border-radius: 50%;
+}
+
+input:checked + .slider {
+    background: linear-gradient(145deg, #3aa76d, #2f8f5b);
+}
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+/* ===== ACTION ROW HAND HISTORY PANEL PROFILES ===== */
+.history-centered-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.history-centered-header h2 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-gold);
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+.controls-row {
+    display: flex;
+    flex-direction: row; /* Keeps buttons and text aligned horizontally */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.mini-btn-group.inline-row {
+    display: flex;       /* Forces the children (B & P buttons) into a horizontal row */
+    flex-direction: row; /* Double down on horizontal alignment */
+    gap: 8px;
+    flex-shrink: 0;      /* ABSOLUTELY PREVENTS the container from shrinking or collapsing */
+}
+
+.btn-square {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn-square:active {
+    transform: scale(0.92);
+}
+
+.btn-square.b-btn { background: linear-gradient(#c0392b, #8b0000); }
+.btn-square.p-btn { background: linear-gradient(#2980b9, #1c6491); }
+
+.bet-placeholder-box-inline {
+    flex: 1;
+    min-width: 0;       /* ALLOWS the text container to shrink safely without pushing buttons out of line */
+    height: 44px;
+    background: var(--inner-bg);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #cbd5e1;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.bet-placeholder-box-inline .side-highlight {
+    font-weight: 700;
+    margin: 0 3px;
+}
+.bet-placeholder-box-inline .side-highlight.B { color: var(--color-b); }
+.bet-placeholder-box-inline .side-highlight.P { color: var(--color-p); }
+
+.bet-placeholder-box-inline span[id="nb-amount"] {
+    color: var(--text-bright-gold);
+    font-weight: 700;
+}
+
+/* ===== BEAD ROAD DATA GRID RENDERING FRAMEWORK ===== */
+.history-layout.vertical-stack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* ===== COMPACT BEAD ROAD MATRIX (3 ROWS HIGH) ===== */
+.bead-road-container {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 12px;
+    padding: 10px;
+    overflow-x: auto; /* Enables seamless swipe scrolling */
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+.bead-road-container::-webkit-scrollbar {
+    display: none; /* Hides raw scroll tracks */
+}
+
+.bead-road {
+    display: grid;
+    grid-template-rows: repeat(3, 22px); /* STRUCTURALLY LOCKED TO 3 ROWS */
+    grid-auto-flow: column;             /* FORCES RIGHTWARD RE-ROUTE */
+    grid-auto-columns: 22px;
+    gap: 6px;
+    height: 78px;                       /* Super-low compact profile height */
+}
+
+.bead {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #fff;
+    font-weight: 700;
+}
+.bead.b { background-color: var(--color-b); }
+.bead.p { background-color: var(--color-p); }
+
+/* ===== STATIONARY BOTTOM APPARATUS NAV BAR ===== */
+.bottom-nav {
+    width: 100%;
+    height: 70px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(145deg, #2c1c14, #120e0c);
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+    margin-top: auto;
+}
+
+.nav-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.3s ease;
+}
+
+.nav-icon {
+    font-size: 1.3rem;
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+
+.nav-tab:hover {
+    transform: translateY(-3px);
+}
+.nav-tab:hover .nav-icon {
+    color: var(--text-gold);
+}
+
+.nav-tab.active {
+    color: var(--text-bright-gold);
+}
+.nav-tab.active .nav-icon {
+    color: var(--text-bright-gold);
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+}
+
+/* ===== SECONDARY PROFILE UTILITY VIEWS ===== */
+/* Container for profile section */
+.profile-card {
+    background: #1a1a1a; /* Consistent with home/game panel background */
+    border: 1px solid #4a4a35; /* Matching your theme's subtle gold/brown border */
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 6px;
+}
+
+.profile-card + .profile-card {
+    margin-top: -5px; /* Pulls the second card closer to the first */
+}
+
+/* Card Titles */
+.card-title {
+    color: #d4af37; /* Consistent gold text */
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #4a4a35;
+    padding-bottom: 8px;
+}
+
+/* Form Styling */
+.profile-row label {
+    font-size: 0.9rem;
+}
+
+/* Center the entire block content */
+#lifetime-stats {
+    display: flex;
+    justify-content: space-around; /* Spreads them out evenly */
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Ensure the label and the value are stacked and centered */
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This centers the items horizontally */
+    justify-content: center;
+    text-align: center;
+     text-align: center;
+    gap: 4px;
+}
+
+/* Ensure the text labels and values themselves are centered */
+.stat-item label, 
+.stat-item .value {
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.stat-item label { font-size: 11px; color: #a9b9cd; font-weight: 700; }
+.stat-item .value { font-size: 13px; font-weight: 700; color: white; }
+.stat-item .value.green { color: var(--accent-green); }
+
+/* Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.menu-btn {
+    background: linear-gradient(180deg, #1c1c1c, #0f0f0f);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    border-radius: 16px;
+    padding: 15px 5px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.menu-btn .icon { font-size: 24px; }
+.menu-btn span { font-size: 10px; font-weight: 600; }
+.menu-btn:hover { border-color: var(--text-gold); transform: scale(1.05); }
+
+/* Disclaimer */
+.disclaimer-box {
+    background: rgba(255, 59, 48, 0.05);
+    border: 1px solid #4a1d1d;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.disclaimer-box h3 { color: #ff3b30; font-size: 12px; margin-bottom: 4px; }
+.disclaimer-box p { color: #aaa; font-size: 10px; line-height: 1.4; }
+
+.welcome-widget {
+    background: linear-gradient(135deg, #3d2d1a 0%, #1a1510 100%);
+    border: 1px solid var(--text-gold);
+    box-shadow: 0 0 10px rgba(110,168,255,0.15);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    opacity: 1; /* Ensure visibility */
+    transform: none; /* Remove animation if it's causing layout shifts */
+}
+
+.welcome-widget h2 {
+    color: #b39cff;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.welcome-widget p {
+    color: #d1d1d1;
+    font-size: 0.8rem;
+}
+
+/* Ensure the input in the Home stats matches your theme */
+#home-bankroll {
+    background: transparent;
+    border: none;
+    color: var(--text-bright-gold);
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+}
+
+#home-profit {
+    display: inline-block;
+    min-width: 40px; /* Keeps the grid from shifting if the number is small */
+    text-align: center;
+}
+
+.modal-overlay {
+    display: none;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    width: 90%;
+    max-height: 80vh;
+    background: #1a1a1a;
+    border: 1px solid var(--text-gold);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-main);
+}
+.modal-body {
+    overflow-y: auto;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+.modal-body ul { padding-left: 20px; }
+
+/* Grid Layout for Profile */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.profile-grid label {
+    display: block;
+    text-align: left;
+    color: #888;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.profile-grid input, .profile-grid select {
+    text-align: left !important; /* Adding !important ensures it overrides other rules */
+    width: 100%;
+    background: #252525;
+    border: 1px solid #4a4a35;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Remove dropdown arrow */
+.no-arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-align: center;
+}
+
+.stat-value {
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+/* Remove arrows from number inputs */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  appearance: none;
+  margin: 0; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+  appearance: none;
+}
+
+/* Center the stats grid specifically */
+.stats-center-grid {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 40px !important; /* Space between the two items */
+    width: 100%;
+}
+
+/* Ensure the items inside are centered */
+.stats-center-grid .stat-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* Style for Labels: Use a subtle muted gold */
+.stats-center-grid label {
+    color: #b8a050 !important; /* Muted gold for labels */
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+/* Style for Profit Value: Emerald Green */
+#life-profit {
+    color: #3aa76d !important; /* Your theme's accent green */
+    font-size: 1.2rem !important;
+    font-weight: 700;
+}
+
+/* Style for Wagered Value: Bright Gold */
+#life-wagered {
+    color: #d1768f !important; /* Bright gold for money stats */
+    font-size: 1.2rem !important;
+    font-weight: 700;
+}
+
+.stats-center-grid {
+    display: flex;
+    justify-content: space-around; /* Distributes space evenly */
+    align-items: center;
+    width: 100%;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers label and value vertically */
+}
+
+.stat-value {
+    font-weight: bold;
+    font-size: 1.2rem; /* Adjust size as needed */
+}
+
+/* Container for title and button */
+.stats-header-row {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center;     /* Centers them vertically */
+    gap: 15px;               /* Adds space between title and button */
+    margin-bottom: 15px;
+}
+
+/* Remove margin from h2 so it doesn't offset the centering */
+.stats-header-row h2 {
+    margin: 0;
+}
