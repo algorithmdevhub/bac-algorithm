@@ -625,16 +625,14 @@ input:checked + .slider:before {
 }
 
 .modal-overlay {
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    display: none; /* Keep this for your JS to toggle */
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
 
 .modal-content {
