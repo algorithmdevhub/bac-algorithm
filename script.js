@@ -353,8 +353,8 @@ function switchTab(targetTabId, element) {
 
 const modalData = {
   "HOW TO USE": `
-    <h3>📖 Instructions</h3>
-    <p>Getting started with Oscar Engine is simple.</p>
+    <h3>📖 How To Use</h3>
+    <p>Getting started with Algorythm is simple.</p>
     <ul>
       <li>Open the Profile page and complete your setup.</li>
       <li>Enter your preferred Default Unit Size and Starting Bankroll.</li>
@@ -367,78 +367,126 @@ const modalData = {
   `,
 
   "OSCARS GRIND": `
-    <h3>🎯 The System</h3>
-    <p>Oscar's Grind is a positive progression betting system.</p>
+    <h3>🎯 Oscar's Grind</h3>
+    <p>
+      Algorythm uses Oscar's Grind as its bankroll progression system.
+    </p>
     <ul>
       <li>Start with 1 unit.</li>
       <li>Increase bets only after wins.</li>
-      <li>After losses, keep the same bet.</li>
-      <li>Once a cycle reaches +1 unit profit, restart at 1 unit.</li>
+      <li>After losses, keep the same bet amount.</li>
+      <li>When a cycle reaches +1 unit profit, return to the base unit.</li>
     </ul>
     <p>
-      The goal is steady profit growth. Oscar Engine automatically applies
-      this progression to all simulated players.
+      The objective is to pursue steady growth while limiting progression
+      increases compared to more aggressive betting systems.
     </p>
   `,
 
   "SUPPORT": `
-    <h3>❤️ Donate</h3>
-    <p>Enjoying Oscar Engine?</p>
+    <h3>❤️ Support</h3>
+    <p>Enjoying Algorythm?</p>
     <ul>
-      <li>Your support helps maintain the app and improve features.</li>
-      <li>Every contribution is greatly appreciated.</li>
+      <li>Your support helps maintain and improve the project.</li>
+      <li>Every contribution helps fund future updates and features.</li>
     </ul>
   `,
 
   "MESSAGE US": `
-    <h3>💬 Chat</h3>
+    <h3>💬 Message Us</h3>
     <p>Questions, feedback, or feature requests?</p>
     <ul>
       <li>Send us a message and we'll do our best to respond as soon as possible.</li>
-      <li>We welcome suggestions that can improve Oscar Engine.</li>
+      <li>We welcome ideas and suggestions that can improve Algorythm.</li>
     </ul>
   `,
 
   "STRATEGY": `
     <h3>📊 Decision Rules</h3>
-    <p>These toggles customize how the engine calculates your next move:</p>
-    <ul>
-      <li><b>High Peak:</b> Highest peak profit reached.</li>
-      <li><b>Low Peak:</b> Lowest peak profit reached.</li>
-      <li><b>High Current:</b> Highest current profit.</li>
-      <li><b>Low Current:</b> Lowest current profit reached.</li>
-    </ul>
+
     <p>
-      <b>Multiple Rules:</b> If enabled rules disagree on the next side,
-      the engine returns NB (No Bet).
+      Decision Rules determine how Algorythm selects its next betting
+      recommendation. You may enable one or multiple rules at the same time.
+    </p>
+
+    <ul>
+      <li>
+        <b>Steady</b><br>
+        Prioritizes approaches that have demonstrated the most consistent
+        long-term performance.
+      </li>
+
+      <li>
+        <b>Adaptive</b><br>
+        Focuses on approaches currently performing well and adapts to
+        changing conditions as the shoe develops.
+      </li>
+
+      <li>
+        <b>Aggressive</b><br>
+        Gives greater weight to approaches capable of producing larger
+        profit swings and higher progression levels.
+      </li>
+
+      <li>
+        <b>Dynamic</b><br>
+        Emphasizes momentum and recent performance, allowing recommendations
+        to change more frequently as results evolve.
+      </li>
+    </ul>
+
+    <p>
+      <b>Multiple Rules:</b> When more than one rule is enabled, all active
+      rules must agree on the next side. If they disagree, Algorythm returns
+      <b>NB (No Bet)</b>.
     </p>
   `,
 
   "FAQS": `
     <h3>❓ Frequently Asked Questions</h3>
+
     <ul>
-      <li><b>What does NB mean?</b><br>NB means No Bet.</li>
 
-      <li><b>What is Wagered?</b><br>
-      Total number of settled bets made by the engine.</li>
+      <li>
+        <b>What does NB mean?</b><br>
+        NB stands for No Bet. Algorythm does not have a unanimous recommendation.
+      </li>
 
-      <li><b>Does Oscar Engine guarantee profit?</b><br>
-      No. It is a simulation and decision-support tool only.</li>
+      <li>
+        <b>What is Wagered?</b><br>
+        The total number of settled bets completed during the current session.
+      </li>
 
-      <li><b>Why did the next bet change?</b><br>
-      Recommendations update automatically based on current results.</li>
+      <li>
+        <b>Does Algorythm guarantee profit?</b><br>
+        No. Algorythm is a decision-support and simulation tool only.
+      </li>
 
-      <li><b>Can I use more than one rule?</b><br>
-      Yes. Multiple decision rules can be enabled simultaneously.</li>
+      <li>
+        <b>Why did the next bet change?</b><br>
+        Recommendations update automatically as new hand results are recorded.
+      </li>
 
-      <li><b>What happens when I reset?</b><br>
-      All hand history, statistics, and session data are cleared.</li>
+      <li>
+        <b>Can I enable multiple rules?</b><br>
+        Yes. Multiple Decision Rules can be used simultaneously.
+      </li>
 
-      <li><b>Why is there no recommendation after the first hand?</b><br>
-      The engine requires additional hand data before making decisions.</li>
+      <li>
+        <b>What happens when I reset?</b><br>
+        All hand history, session statistics, and current recommendations are cleared.
+      </li>
 
-      <li><b>Is my data saved?</b><br>
-      No. Session data is not stored permanently.</li>
+      <li>
+        <b>Why is there no recommendation after the first hand?</b><br>
+        The engine requires sufficient hand history before generating decisions.
+      </li>
+
+      <li>
+        <b>Is my data saved?</b><br>
+        No. Session data is cleared when you reset the application.
+      </li>
+
     </ul>
   `
 };
