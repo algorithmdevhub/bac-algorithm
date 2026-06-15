@@ -40,8 +40,7 @@ body {
     width: 100%;
     max-width: 360px;
     margin: 0 auto;
-    min-height: 100vh;
-    height: 100dvh;
+    height: 100vh;
     background: var(--bg-gradient-app);
     border-radius: 30px;
     overflow: hidden;
