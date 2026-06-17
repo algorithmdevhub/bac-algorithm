@@ -30,7 +30,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100dvh;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* ===== MONITOR APP CONTAINER WINDOW (SMARTPHONE FRAME) ===== */
@@ -40,11 +40,11 @@ body {
     width: 100%;
     max-width: 360px;
     margin: 0 auto;
-    height: 100vh;
+    height: 100dvh;
     background: var(--bg-gradient-app);
     border-radius: 30px;
     overflow: hidden;
-    position: absolute;
+    position: relative;
     box-shadow:
         0 0 20px rgba(212, 175, 55, 0.2),
         inset 0 0 10px rgba(255, 215, 0, 0.05);
@@ -777,4 +777,13 @@ input[type=number] {
 /* Remove margin from h2 so it doesn't offset the centering */
 .stats-header-row h2 {
     margin: 0;
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        max-width: 100%;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+    }
 }
